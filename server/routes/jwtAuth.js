@@ -4,6 +4,7 @@ const bcrypt=require("bcrypt");
 const jwtGenerator=require("../utils/jwtGenerator");
 const validInfo=require("../middleware/validinfo");
 const authorization=require("../middleware/authorization");
+const { signup } = require('../controller/appController');
 
 //register
 router.post("/register",validInfo,async(req,res)=>{
@@ -39,8 +40,10 @@ router.post("/register",validInfo,async(req,res)=>{
         res.status(500).send("server error");
     }
 });
+
+
 //login route
-router.post("/login",validInfo,async(req,res)=>{
+router.post("/login",signup,validInfo,async(req,res)=>{
     try {
         //destructure
 
